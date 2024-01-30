@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_owl_sales_dashboard" model="ir.actions.client">
+            <field name="name">Digital Invoice</field>
+            <field name="tag">owl.sales_dashboard</field>
+        </record>
+        <!-- <menuitem name="OWL Tutorial" id="menu_owl_tutorial" sequence="10"> -->
+            <menuitem name="Dashboard" id="menu_owl_sales_dashboard" sequence="-1" action="action_owl_sales_dashboard" parent="wika_dashboard.menu_board_wika"/>
+        <!-- </menuitem> -->
+    </data>
+</odoo>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates>
+    <t t-name="owl.KpiCard" owl="1">
+        <div class="col-lg-3 m-0 p-0">
+            <div class="shadow-sm border m-2 p-4 bg-white text-center cursor-pointer" t-on-click="()=>props.onClick()">
+                <div class="h1 fw-bold text-dark" style="font-size: 48px">
+                    <t t-if="props.name === 'Purchase Orders'">
+                        <i class="fa fa-file-text" style="margin-right: 10px;"></i>
+                    </t>
+                    <t t-elif="props.name === 'GR/SES'">
+                        <i class="fa fa-archive" style="margin-right: 10px;"></i>
+                    </t>
+                    <t t-elif="props.name === 'Berita Acara Pembayaran'">
+                        <i class="fas fa-files-o" style="margin-right: 10px;"></i>
+                    </t>
+                    <t t-elif="props.name === 'Invoice'">
+                        <i class="fas fa-money" style="margin-right: 10px;"></i>
+                    </t>
+                    <t t-elif="props.name === 'Pengajuan Pembayaran'">
+                        <i class="fas fa-credit-card" style="margin-right: 10px;"></i>
+                    </t>
+                    <span t-esc="props.value"/>
+                </div>
+                <div class="h3 text-muted">
+                    <span t-esc="props.name"/>
+                </div>
+                <div class="h3 mt-5">
+                    <div class="col-12">
+                        
+                        <!-- To Submit Button -->
+                        <!-- <t t-if="props.name === 'Purchase Orders'">
+                            <a t-attf-href="{{props.urlwait}}" type="object"><span t-esc="props.waits"/> To Submit</a>
+                        </t> -->
+
+                        <t t-if="props.name === 'Purchase Orders'">
+                            <a onClick.bind="testOnclickChild"><span t-esc="props.waits"/> To Submit</a>
+                        </t>
+
+                        <t t-elif="props.name === 'GR/SES'">
+                            <a href="/web/database/selector" type="object"><span t-esc="props.waits"/> To Submit</a>
+                        </t>
+                        <t t-elif="props.name === 'Berita Acara Pembayaran'">
+                            <a href="/web/database/selector" type="object"><span t-esc="props.waits"/> To Submit</a>
+                        </t>
+                        <t t-elif="props.name === 'Invoice'">
+                            <a href="/web/database/selector" type="object"><span t-esc="props.waits"/> To Submit</a>
+                        </t>
+                        <t t-elif="props.name === 'Pengajuan Pembayaran'">
+                            <a href="/web/database/selector" type="object"><span t-esc="props.waits"/> To Submit</a>
+                        </t>
+                    
+                    </div>
+                    <div class="col-12">
+                        <a href="/web/database/selector" type="object"><span t-esc="props.uploaded"/> To Upload</a>
+                    </div>
+                    <div class="col-12">
+                        <a href="/web/database/selector" type="object"><span t-esc="props.approved"/> To Approve</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
