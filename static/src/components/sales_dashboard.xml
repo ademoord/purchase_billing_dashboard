@@ -8,7 +8,7 @@
                         <div class="col m-0 p-0">
                             <div class="shadow-sm border m-2 p-4 bg-white">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h1 class="text-primary fw-bold">Custom Sales Dashboard</h1>
+                                    <h1 class="text-primary fw-bold">Digital Invoice Dashboard</h1>
                                     <div>
                                         <select class="form-select" t-model="state.period" t-on-change="onChangePeriod">
                                             <option value="0">Select Period</option>
@@ -24,16 +24,36 @@
                     </div>
                     <div class="row">
                         
-                        <KpiCard onClick.bind="viewTotalPO" name="'Purchase Orders'" value="state.quotations.value"
-                            waits="state.po.waits" uploaded="state.po.uploaded" approved="state.po.approved" urlwait="state.po.url.wait"/>
-                        
-                        <KpiCard onClick.bind="viewTotalPO" name="'GR/SES'" value="state.quotations.value"
-                            waits="state.po.waits" uploaded="state.po.uploaded" approved="state.po.approved"/>
+                        <KpiCard name="'Purchase Orders'" total="state.po.total" waits="state.po.waits"
+                            uploaded="state.po.uploaded" late="state.po.late" urlwait="state.po.url.wait"
+                            urlupload="state.po.url.upload" urllate="state.po.url.late"/>
 
-                        <!-- <KpiCard onClick.bind="viewQuotations" name="'Quotations'" value="state.quotations.value" percentage="state.quotations.percentage"/> -->
-                        <!-- <KpiCard onClick.bind="viewOrders" name="'Orders'" value="state.orders.value" percentage="state.orders.percentage"/> -->
-                        <!-- <KpiCard onClick.bind="viewRevenues" name="'Revenues'" value="state.orders.revenue" percentage="state.orders.revenue_percentage"/> -->
-                        <!-- <KpiCard onClick.bind="viewRevenues" name="'Average Order'" value="state.orders.average" percentage="state.orders.average_percentage"/> -->
+                        <KpiCard name="'GR/SES'" total="state.grses.total" grseswaits="state.grses.waits"
+                            grsesuploaded="state.grses.uploaded" grseslate="state.grses.late" urlwaitgrses="state.grses.url.wait"
+                            urluploadgrses="state.grses.url.upload" urllategrses="state.grses.url.late"/>
+
+                        <KpiCard name="'Berita Acara Pembayaran'" total="state.bap.total" bapwaits="state.bap.waits"
+                            bapuploaded="state.bap.uploaded" baplate="state.bap.late" urlwaitbap="state.bap.url.wait"
+                            urluploadbap="state.bap.url.upload" urllatebap="state.bap.url.late"/>
+
+                        <KpiCard name="'Invoice'" total="state.inv.total" invwaits="state.inv.waits"
+                            invuploaded="state.inv.uploaded" invlate="state.inv.late" urlwaitinv="state.inv.url.wait"
+                            urluploadinv="state.inv.url.upload" urllateinv="state.inv.url.late"/>
+
+                        <KpiCard name="'Pengajuan Pembayaran'" total="state.pr.total" prwaits="state.pr.waits"
+                            pruploaded="state.pr.uploaded" prlate="state.pr.late" urlwaitpr="state.pr.url.wait"
+                            urluploadpr="state.pr.url.upload" urllatepr="state.pr.url.late"/>
+
+                        <div class="shadow-sm border m-2 p-4 bg-white" style="width:810px; height:226px;">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3 class="text-primary fw-bold">Monthly Purchases</h3>
+                                <div class="px-3 py-1 bg-primary cursor-pointer">
+                                    <span class="fa fa-arrow-right text-white"/>
+                                </div>
+                            </div>
+                            <ChartRenderer type="'line'" title="'Monthly Sales Report'" config="state.monthlySales"/>
+                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col-lg-6 m-0 p-0">
@@ -44,18 +64,18 @@
                                         <span class="fa fa-arrow-right text-white"/>
                                     </div>
                                 </div>
-                                <ChartRenderer type="'doughnut'" title="'Top Products Report'" config="state.topProducts"/>
+                                <ChartRenderer type="'doughnut'" title="'Top Products Purchased in PO and GR/SES'" config="state.topProducts"/>
                             </div>
                         </div>
                         <div class="col-lg-6 m-0 p-0">
                             <div class="shadow-sm border m-2 p-4 bg-white">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h3 class="text-primary fw-bold">Top Sales People</h3>
+                                    <h3 class="text-primary fw-bold">Digital Invoice by Stages</h3>
                                     <div class="px-3 py-1 bg-primary cursor-pointer">
                                         <span class="fa fa-arrow-right text-white"/>
                                     </div>
                                 </div>
-                                <ChartRenderer type="'pie'" title="'Top Sales People Report'" config="state.topSalesPeople"/>
+                                <ChartRenderer type="'pie'" title="'Purchase Report'" config="state.digitalInvoiceReport"/>
                             </div>
                         </div>
                     </div>
@@ -65,7 +85,7 @@
                         <div class="col m-0 p-0">
                             <div class="shadow-sm border m-2 p-4 bg-white">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h3 class="text-primary fw-bold">Monthly Sales</h3>
+                                    <h3 class="text-primary fw-bold">Monthly Purchases</h3>
                                     <div class="px-3 py-1 bg-primary cursor-pointer">
                                         <span class="fa fa-arrow-right text-white"/>
                                     </div>
@@ -78,12 +98,12 @@
                         <div class="col m-0 p-0">
                             <div class="shadow-sm border m-2 p-4 bg-white">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h3 class="text-primary fw-bold">Partner Orders</h3>
+                                    <h3 class="text-primary fw-bold">Vendor Orders</h3>
                                     <div class="px-3 py-1 bg-primary cursor-pointer">
                                         <span class="fa fa-arrow-right text-white"/>
                                     </div>
                                 </div>
-                                <ChartRenderer type="'bar'" title="'Partner Orders Report'" config="state.partnerOrders"/>
+                                <ChartRenderer type="'bar'" title="'Vendor Orders Report'" config="state.partnerOrders"/>
                             </div>
                         </div>
                     </div>
